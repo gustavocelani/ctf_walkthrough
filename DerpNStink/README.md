@@ -375,8 +375,8 @@ Update `/etc/hosts` with **derpnstink.local** DNS
 192.168.1.127 derpnstink.local
 ```
 
-PhP MyAdmin Login Page: http://192.168.1.127/php/phpmyadmin/index.php
-WordPress Login Page: http://derpnstink.local/weblog/wp-login.php
+PhP MyAdmin Login Page: http://192.168.1.127/php/phpmyadmin/index.php \
+WordPress Login Page: http://derpnstink.local/weblog/wp-login.php \
 WebLog Page: http://192.168.1.127/weblog/index.php
 
 ### WordPress Analysis
@@ -749,9 +749,9 @@ if ( !defined('ABSPATH') )
 require_once(ABSPATH . 'wp-settings.php');
 ```
 
-DB_NAME: **wordpress**
-DB_USER: **root**
-DB_PASSWORD: **mysql**
+DB_NAME: **wordpress** \
+DB_USER: **root** \
+DB_PASSWORD: **mysql** \
 DB_HOST: **localhost**
 
 ### MySQL Connect
@@ -785,8 +785,8 @@ display_name: admin
 flag2:
 ```
 
-Credentials:
-**unclestinky** : **$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41**
+Credentials: \
+**unclestinky** : **$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41** \
 **admin** : **$P$BgnU3VLAv.RWd3rdrkfVIuQr6mFvpd/**
 
 ### Flag #2
