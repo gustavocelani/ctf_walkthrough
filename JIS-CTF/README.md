@@ -530,13 +530,13 @@ username : technawi
 password : 3vilH@ksor
 ```
 
-User: **technawi**
+User: **technawi** \
 Pass: **3vilH@ksor**
 
 ### Flag #5
 
 ```
-find . | grep flag.txt
+# find . | grep flag.txt
 # cat ./var/www/html/flag.txt
 
 The 5th flag is : {5473215946785213456975249}
