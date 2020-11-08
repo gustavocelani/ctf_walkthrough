@@ -287,7 +287,7 @@ $99990$
 
 ### SSH Connection
 
-User: **monica**
+User: **monica** \
 Pass: **\$99990\$**
 ```
 $ ssh monica@192.168.1.175
@@ -362,21 +362,15 @@ monica@TenderFoot:~/joey/have/a/gift/for/monica$ cat note.txt
 Got to /fotocd/0x0343548764 directory in browser.
 ```
 
-This WEB path `http://192.168.1.175/fotocd/0x0343548764/` contains 2 files:
-* joey.zip
-* note.txt
-\
+This WEB path `http://192.168.1.175/fotocd/0x0343548764/` contains 2 files.\
 The `note.txt` contains the password of `joey.zip`
 ```
 Here is a zip file for you, unzip it !
 "#9175"
 ```
 
-After unzip `joey.zip`, we found 2 files:
-* gift.zip
-* note.txt
-\
-The `note.txt` says to try to crack the `gift.zip` password
+After unzip `joey.zip`, we found other 2 files.\
+The `note.txt` says to try to crack the `gift.zip` password.
 ```
 =======================================================
 =======================================================
@@ -503,7 +497,7 @@ $ echo "OBQXG43XMQ5FSMDVINZDIY3LJUZQ====" | base32 -d
 passwd:Y0uCr4ckM3
 ```
 
-User: **chandler**
+User: **chandler** \
 Pass: **Y0uCr4ckM3**
 
 ### Privilege Escalation (Root)
