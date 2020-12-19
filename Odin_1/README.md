@@ -56,9 +56,9 @@ The page source has references for `http://odin/`. So I created a entry for my D
 ```
 $ cat /etc/hosts
 
-127.0.0.1	    localhost
-127.0.1.1	    Kali-Burton
-192.168.1.181	odin
+127.0.0.1       localhost
+127.0.1.1       Kali-Burton
+192.168.1.181   odin
 ```
 
 The page has some encoded content. Lets decode it:
@@ -630,7 +630,7 @@ Session completed
 ```
 
 User: **root**\
-Pass: ***jasmine**
+Pass: **jasmine**
 
 ### Privilege Escalation
 
