@@ -225,8 +225,8 @@ Page Source:
 ?>
 ```
 
-Credentials:\
-* User: **ftpuser**\
+Credentials:
+* User: **ftpuser**
 * Pass: **B0ss_B!TcH**
 
 ### FTP Access
@@ -376,12 +376,11 @@ alpine              latest              a24bb4013296        7 months ago        
 debian              wheezy              10fcec6d95c4        22 months ago       88.3MB
 ```
 
-Studing what is this `privesc` image I found it is a image that abuses of docker configuration and privileges.\
-References:\
-* https://github.com/flast101/docker-privesc/blob/master/docs/index.md \
-* https://flast101.github.io/docker-privesc/ \
-* https://gtfobins.github.io/gtfobins/docker/ \
-\
+Studing what is this `privesc` image I found it is a image that abuses of docker configuration and privileges. \
+References:
+* https://github.com/flast101/docker-privesc/blob/master/docs/index.md
+* https://flast101.github.io/docker-privesc/
+* https://gtfobins.github.io/gtfobins/docker/
 
 ```
 selena@pwned:~$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
