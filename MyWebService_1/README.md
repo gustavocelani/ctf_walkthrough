@@ -288,6 +288,8 @@ uid=1(daemon) gid=1(daemon) groups=1(daemon),0(root)
 
 Apache Credentials:
 ```
+daemon@webserver:/usr/bin$ cat /usr/local/tomcat/conf/tomcat-users.xml
+
 .
 ..
 ...
@@ -454,7 +456,7 @@ Exited with error code : 0
 
 ### Exploring
 
-Now I did the same proccess but now usign the `ReverseShell.java` and I listen the reverse connection in host. \
+Now I did the same proccess but now usign the `ReverseShell.java` (available on this repository) and listen the reverse connection in host. \
 \
 Compiling `ReverseShell.java` locally with Java 8.
 ```
