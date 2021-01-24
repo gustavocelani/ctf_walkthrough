@@ -181,12 +181,6 @@ $ nikto -h http://192.168.1.121
 + 1 host(s) tested
 ```
 
-```
-$ gobuster dir -t 50 -u http://192.168.1.121 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.txt,.js,/,.html
-
-
-```
-
 ### WordPress Analysis
 
 ```
@@ -394,13 +388,12 @@ User found: **user**
 
 ### Exploiting
 
-The old plugin `` is vulnerable for Local File Inclusion (LFI): https://www.exploit-db.com/exploits/46537 \
+The old plugin `gracemedia-media-player` is vulnerable to Local File Inclusion (LFI): https://www.exploit-db.com/exploits/46537 \
 Validation exception with suggested PoC:
 ```
 IV. PROOF OF CONCEPT
 -------------------------
-The following URL have been confirmed that is vulnerable to local file
-inclusion.
+The following URL have been confirmed that is vulnerable to local file inclusion.
 
 Local File Inclusion POC:
 
@@ -470,8 +463,8 @@ Session completed
 ```
 
 Credentials:
-* User: flag
-* Pass: topsecret
+* User: **flag**
+* Pass: **topsecret**
 
 ### SSH Access
 
@@ -630,6 +623,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 ### Flag #2 - Root
 
+```
 rohit@hacknos:~$ sudo su
 root@hacknos:/home/rohit# 
 
@@ -651,3 +645,4 @@ Blog : www.hackNos.com
 Author : Rahul Gehlaut
 linkedin : https://www.linkedin.com/in/rahulgehlaut/
 #############################################################
+```
