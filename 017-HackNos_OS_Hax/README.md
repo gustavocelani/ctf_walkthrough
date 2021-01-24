@@ -372,7 +372,7 @@ Unfortunately it is not the WordPress credentials with the previously found Word
 
 ### Flag #2
 
-The `passw@45` is not a passwrd. It is a endpoint listable directory.
+The `passw@45` is not a password. It is a listable endpoint directory.
 ```
 http://192.168.1.115/passw@45
 ```
