@@ -89,7 +89,7 @@ $ sudo cat /etc/hosts
 ### WordPress Analysis
 
 ```
-$ wpscan -e at -e ap -e u --url http://www.armour.local
+$ wpscan -e ap,at,u --url http://www.armour.local
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|

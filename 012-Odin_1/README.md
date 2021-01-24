@@ -245,7 +245,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ### WordPress Analysis
 
 ```
-$ wpscan -e at -e ap -e u --url http://192.168.1.181
+$ wpscan -e ap,at,u --url http://192.168.1.181
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|

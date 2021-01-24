@@ -189,7 +189,7 @@ WordPress Login Page: http://ck/wp-login.php
 ### WordPress Analysis
 
 ```
-$ wpscan -e --url http://192.168.1.142
+$ wpscan --url http://192.168.1.142
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|

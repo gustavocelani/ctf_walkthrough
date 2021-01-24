@@ -382,7 +382,7 @@ WebLog Page: http://192.168.1.127/weblog/index.php
 ### WordPress Analysis
 
 ```
-$ wpscan -e --url http://derpnstink.local/weblog/
+$ wpscan --url http://derpnstink.local/weblog/
 _______________________________________________________________
          __          _______   _____
          \ \        / /  __ \ / ____|
