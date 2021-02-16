@@ -653,7 +653,7 @@ So we just have to add `/tmp` folder in the start of `PATH`.
 oscar@WebServer:/tmp$ export PATH=/tmp:$PATH
 ```
 
-So when current-date run, the `date` that will be executed will be our script.
+So when `current-date` run, the `date` that will be executed will be our script.
 ```
 oscar@WebServer:~/scripts$ ./current-date
 
@@ -773,7 +773,7 @@ $ fcrackzip -u -D -p '/usr/share/wordlists/rockyou.txt' .backup.zip
 PASSWORD FOUND!!!!: pw == 1234567890
 ```
 
-The zip file contains `donald` user's credential
+The zip file contains `donald` user's credentials
 ```
 $ unzip .backup.zip 
 Archive:  .backup.zip
