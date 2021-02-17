@@ -178,12 +178,12 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 ### /Portal Analysis
 
-In /Portal endpoint, we can find a Local File Injection (LFI) vulnerability.\
-It happens when a `view` URL parameter is passed with a system path as vallue.
+In `/Portal` endpoint, we can find a Local File Injection (LFI) vulnerability.\
+It happens when a `view` URL parameter is passed with a system path as value.
 ```
 [ GET ] http://192.168.1.132/Portal/index.php?view=about-us.html
                                                    -------------
-                                                   |
+                                                   ^
                                                    |__ System Path
 ```
 
