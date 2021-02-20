@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/cybersploit-1,506/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.183
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.88 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.183
@@ -89,7 +87,7 @@ END_TIME: Sun Oct 11 13:58:22 2020
 DOWNLOADED: 4612 - FOUND: 7
 ```
 
-### Flag #1
+## Flag #1
 
 ```
 $ wget http://192.168.1.183/robots.txt
@@ -102,7 +100,7 @@ Good Work !
 Flag1: cybersploit{youtube.com/c/cybersploit}
 ```
 
-### HTML Source Inspection
+## HTML Source Inspection
 
 ```
 .
@@ -114,7 +112,7 @@ Flag1: cybersploit{youtube.com/c/cybersploit}
 .
 ```
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh itsskv@192.168.1.183
@@ -139,7 +137,7 @@ itsskv@cybersploit-CTF:~$ id
 uid=1001(itsskv) gid=1001(itsskv) groups=1001(itsskv)
 ```
 
-### Flag #2
+## Flag #2
 
 ```
 itsskv@cybersploit-CTF:~$ cat flag2.txt
@@ -170,7 +168,7 @@ good work !
 flag2: cybersploit{https:t.me/cybersploit1}
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 Running Linux Exploit Suggester - LES ( https://github.com/mzet-/linux-exploit-suggester )
 ```
@@ -364,7 +362,7 @@ creating shared library
 uid=0(root) gid=0(root) groups=0(root),1001(itsskv)
 ```
 
-### Flag #3
+## Flag #3
 
 ```
 # cat /root/finalflag.txt

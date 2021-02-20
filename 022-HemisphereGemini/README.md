@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hemisphere-gemini,596/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.132
@@ -80,7 +78,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 16.21 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.132
@@ -176,7 +174,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### /Portal Analysis
+## /Portal Analysis
 
 In `/Portal` endpoint, we can find a Local File Injection (LFI) vulnerability.\
 It happens when a `view` URL parameter is passed with a system path as value.
@@ -187,7 +185,7 @@ It happens when a `view` URL parameter is passed with a system path as value.
                                                    |__ System Path
 ```
 
-### Exploring LFI
+## Exploring LFI
 
 We can use this vulnerability to see `/etc/passwd` file content.
 ```
@@ -310,7 +308,7 @@ fKRRpBxhj78f6LPLAAAAC3Jvb3RAZ2VtaW5pAQIDBAUGBw==
 </html>
 ```
 
-### SSH Access
+## SSH Access
 
 I create a file called `william_id_rsa.key` with the retrieved key only.
 ```
@@ -412,7 +410,7 @@ william@gemini:~$ id
 uid=1000(william) gid=1000(william) grupos=1000(william),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),109(netdev)
 ```
 
-### Flag #1 - User
+## Flag #1 - User
 
 ```
 william@gemini:~$ cat user.txt
@@ -443,7 +441,7 @@ william@gemini:~$ cat user.txt
 user_flag==> srLbBhLRK7nBdZAesnxyeWaMV
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 As we could read the `/etc/passwd` file, I took a look in its permissions and...
 ```
@@ -469,7 +467,7 @@ root@gemini:/home/william# id
 uid=0(root) gid=0(root) grupos=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 root@gemini:~# cat root.txt

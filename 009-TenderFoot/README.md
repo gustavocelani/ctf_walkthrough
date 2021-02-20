@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/tenderfoot-1,581/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.175
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.77 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.175
@@ -108,7 +106,7 @@ END_TIME: Sat Nov  7 17:20:26 2020
 DOWNLOADED: 4612 - FOUND: 3
 ```
 
-### Robots.txt
+## Robots.txt
 
 Has an path directory `/hint` obfuscated on `/robots.txt` source code
 ```
@@ -145,7 +143,7 @@ $ echo "EBPV6X27L5PV6X27L5PV6X27L5PV6X27L4FHYICOGB2GQ2LOM4QEQZLSMUQSAIBAEAQCA7AK
 Enumerate more :)
 ```
 
-### Let's Enumerate More
+## Let's Enumerate More
 
 Back to enumeration step.\
 Now I ran the biggest wordlist for WEB directory list of `dirbuster` using `gobuster`
@@ -175,14 +173,14 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### /entry.js
+## /entry.js
 
 This file has one line. It can be useful on the future.
 ```
 monica
 ```
 
-### /fotocd
+## /fotocd
 
 This URL path has an obfuscated message on its source code:
 
@@ -259,7 +257,7 @@ Ask to G00GLE !
 -->
 ```
 
-### Brainfuck
+## Brainfuck
 
 I searched on Google and I found that this is a Brainfuck code.\
 Using this Brainfuck Visualizer ( https://fatiherikli.github.io/brainfuck-visualizer/ ) we got this follow result:
@@ -285,7 +283,7 @@ $ echo "JDk5OTkwJA==" | base64 -d
 $99990$
 ```
 
-### SSH Connection
+## SSH Connection
 
 User: **monica** \
 Pass: **\$99990\$**
@@ -313,7 +311,7 @@ monica@TenderFoot:~$ id
 uid=1001(monica) gid=1001(monica) groups=1001(monica)
 ```
 
-### Flag #1
+## Flag #1
 
 ```
 monica@TenderFoot:~$ cat user1.txt
@@ -354,7 +352,7 @@ Try to Find out user2.txt (your 2nd flag) :)
 ========================================================
 ```
 
-### Joey
+## Joey
 
 ```
 monica@TenderFoot:~/joey/have/a/gift/for/monica$ cat note.txt 
@@ -383,7 +381,7 @@ you will learn new thing!
 =======================================================
 ```
 
-### Cracking gift.zip File Password
+## Cracking gift.zip File Password
 
 I used the `fcrackzip` and `rockyou` wordlist to crack the password
 ```
@@ -414,7 +412,7 @@ G00D LUCK! :)
 ==================================================================================================
 ```
 
-### Privilege Escalation (Chandler)
+## Privilege Escalation (Chandler)
 
 ```
 monica@TenderFoot:~$ find / -type f -perm -u=s 2>/dev/null
@@ -453,7 +451,7 @@ chandler@TenderFoot:~$ id
 uid=1000(chandler) gid=1000(chandler) groups=1000(chandler),1001(monica)
 ```
 
-### Flag #2
+## Flag #2
 
 ```
 chandler@TenderFoot:/home/chandler/.cache$ cat user2.txt 
@@ -471,7 +469,7 @@ You are one step away from root!
 ===================================
 ```
 
-### Chandler's Note
+## Chandler's Note
 
 ```
 chandler@TenderFoot:/home/chandler/.cache$ cat note.txt
@@ -500,7 +498,7 @@ passwd:Y0uCr4ckM3
 User: **chandler** \
 Pass: **Y0uCr4ckM3**
 
-### Privilege Escalation (Root)
+## Privilege Escalation (Root)
 
 Switching to chandler's user
 ```
@@ -531,7 +529,7 @@ root@TenderFoot:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #3
+## Flag #3
 
 ```
 root@TenderFoot:~# cat /root/last_note.txt

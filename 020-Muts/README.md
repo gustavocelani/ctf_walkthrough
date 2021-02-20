@@ -4,16 +4,14 @@
 Distributed by FIAP as a weekend challenge.
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 Static IP Address:
 ```
 10.2.0.11
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 10.2.0.11
@@ -103,7 +101,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 44.51 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://10.2.0.11
@@ -204,14 +202,14 @@ END_TIME: Sat Feb 13 22:13:07 2021
 DOWNLOADED: 64568 - FOUND: 17
 ```
 
-### BuilderEngine Analysis
+## BuilderEngine Analysis
 
 [ GET ] http://10.2.0.11/themes/default_theme_2015/description.txt
 ```
 Default 2015 Theme for BuilderEngine V3.
 ```
 
-### Exploiting
+## Exploiting
 
 BuilderEngine 3.5.0 - Arbitrary File Upload and Execution ( https://www.exploit-db.com/exploits/42025 )
 ```
@@ -270,14 +268,14 @@ www-data@Muts:/var/www/html/files$ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-### Flag #1 - User
+## Flag #1 - User
 
 ```
 www-data@Muts:/var/www$ cat user.txt
 bfbb7e6e6e88d9ae66848b9aeac6b289
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 Looking for points of interest, we found `chkrootkit`.
 ```
@@ -301,7 +299,7 @@ www-data@Muts:/etc/chkrootkit$ cat README
            Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>.
 ```
 
-### Exploiting
+## Exploiting
 
 Backgrounding meterpreter session with target.
 ```
@@ -366,7 +364,7 @@ root@Muts:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 root@Muts:~# cat root.txt

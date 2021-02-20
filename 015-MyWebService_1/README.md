@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/my-web-server-1,463/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.100
@@ -73,7 +71,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 33.40 seconds
 ```
 
-### Editing Local Hosts
+## Editing Local Hosts
 
 ```
 $ sudo cat /etc/hosts
@@ -86,7 +84,7 @@ $ sudo cat /etc/hosts
 .
 ```
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan -e ap,at,u --url http://www.armour.local
@@ -195,7 +193,7 @@ Interesting Finding(s):
 
 User: **Ap20dsero039**
 
-### Search for Knew Vulnerabilities
+## Search for Knew Vulnerabilities
 
 Lookng for services:
 * 22/tcp   open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
@@ -218,7 +216,7 @@ nostromo nhttpd 1.9.3 - Directory Traversal Remote Command Execution   | linux/r
 ----------------------------------------------------------------------- ---------------------------------
 ```
 
-### Exploiting Nostromo Service
+## Exploiting Nostromo Service
 
 Using `msfconsole` module.
 ```
@@ -284,7 +282,7 @@ daemon@webserver:/usr/bin$ id
 uid=1(daemon) gid=1(daemon) groups=1(daemon),0(root)
 ```
 
-### Searching for Credentials
+## Searching for Credentials
 
 Apache Credentials:
 ```
@@ -312,7 +310,7 @@ Credentials:
 * Manager Role: **tomcat**:**@sprot0230sp**
 * Admin Role: **admin**:**as3epr04irto**
 
-### Exploiting Tomcat Manager
+## Exploiting Tomcat Manager
 
 ```
 msf6 > search tomcat_mgr_upload
@@ -382,7 +380,7 @@ tomcat@webserver:~$ id
 uid=1000(tomcat) gid=1000(tomcat) groups=1000(tomcat)
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 Tomcat's user is able to run `/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64/bin/java` as root.
 ```
@@ -404,7 +402,7 @@ OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_242-b08)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.242-b08, mixed mode)
 ```
 
-### Proof of Privilege Escalation
+## Proof of Privilege Escalation
 
 Building `EscalationPoc.java` (available on this repository) locally with Java 8.
 ```
@@ -454,7 +452,7 @@ uid=0(root) gid=0(root) groups=0(root)
 Exited with error code : 0
 ```
 
-### Exploring
+## Exploring
 
 Now I did the same proccess but now usign the `ReverseShell.java` (available on this repository) and listen the reverse connection in host. \
 \
@@ -505,7 +503,7 @@ root@webserver:/opt/tomcat# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag Acquiring
+## Flag Acquiring
 
 ```
 root@webserver:~# cat /root/proof.txt

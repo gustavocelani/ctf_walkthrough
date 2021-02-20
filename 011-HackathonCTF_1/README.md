@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hackathonctf-1,591/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.146
@@ -60,7 +58,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 18.40 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.146
@@ -140,7 +138,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### Clues
+## Clues
 
 We found a Base64 blob at `http://192.168.1.146/robots.txt`
 ```
@@ -220,7 +218,7 @@ So now we found 3 clues that allow us to proceed.
 * use rockyou.txt
 * ssh-bruteforce-sudoit
 
-### SSH Brute Forcing
+## SSH Brute Forcing
 
 Brute forcing SSH connection with `hydra` using `test` username and `rockyou.txt` wordlist.
 ```
@@ -245,7 +243,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-11-08 13:59:
 User: **test** \
 Pass: **jordan23**
 
-### SSH Connection
+## SSH Connection
 
 ```
 $ ssh test@192.168.1.146 -p7223
@@ -260,7 +258,7 @@ test@ctf:~$ id
 uid=1001(test) gid=1001(test) groups=1001(test)
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 Looking into `.bash_history` file we found many occurrences for an file called `pass.txt`.\
 So I try to find it.

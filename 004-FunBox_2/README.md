@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/funbox-rookie,520/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.198
@@ -71,7 +69,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 11.58 seconds
 ```
 
-### FTP Anonymous Access
+## FTP Anonymous Access
 
 ```
 $ ftp 192.168.1.198
@@ -113,7 +111,7 @@ drwxr-xr-x   2 ftp      ftp          4.0k Jul 25 11:07 ..
 226 Transfer complete
 ```
 
-### Cracking ZIP Passwords
+## Cracking ZIP Passwords
 
 I made a simple script to automate the password cracking for all users.
 ```
@@ -304,7 +302,7 @@ Cracked Credentials:
 * **cathrine** : **catwoman**
 * **tom** : **iubire**
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh -i ./tom_id_rsa tom@192.168.1.198
@@ -343,7 +341,7 @@ tom@funbox2:~$ id
 uid=1000(tom) gid=1000(tom) groups=1000(tom),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
 ```
 
-### Acquiring Tom's Password
+## Acquiring Tom's Password
 
 ```
 tom@funbox2:~$ cat .mysql_history
@@ -367,7 +365,7 @@ quit
 
 Credentials: **tom** : **xx11yy22!**
 
-### Privilege Escalation
+## Privilege Escalation
 
 Tom has superuser credentials
 ```
@@ -377,7 +375,7 @@ Password: xx11yy22!
 root@funbox2:~#
 ```
 
-### Flag Acquiring
+## Flag Acquiring
 
 ```
 root@funbox2:~# cat flag.txt

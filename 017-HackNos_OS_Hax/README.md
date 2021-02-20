@@ -4,9 +4,7 @@
 Available on VulnHub: https://www.vulnhub.com/entry/hacknos-os-hax,389/
 
 
-## Walkthrough
-
-### IP Discovery
+## IP Discovery
 
 ```
 $ sudo netdiscover -r 192.168.1.0/16
@@ -29,7 +27,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-### Port Scanning
+## Port Scanning
 
 ```
 $ nmap -AT4 -p- 192.168.1.115
@@ -55,7 +53,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 8.90 seconds
 ```
 
-### Web Analysis
+## Web Analysis
 
 ```
 $ dirb http://192.168.1.115
@@ -234,7 +232,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-### WordPress Analysis
+## WordPress Analysis
 
 ```
 $ wpscan -e ap,at,u --url http://192.168.1.115/wordpress
@@ -319,7 +317,7 @@ Interesting Finding(s):
 
 User: **web**
 
-### Flag #1 - Host
+## Flag #1 - Host
 
 Looking into `http://192.68.1.115/img` listable directory, we can find the `flaghost.png` file:
 ```
@@ -370,7 +368,7 @@ Megapixels                      : 0.038
 Apparently we have found a password: **passw@45**\
 Unfortunately it is not the WordPress credentials with the previously found WordPress user **web**...
 
-### Flag #2
+## Flag #2
 
 The `passw@45` is not a password. It is a listable endpoint directory.
 ```
@@ -413,7 +411,7 @@ WordPress Credentials:
 * User: **web**
 * Pass: **Hacker@4514**
 
-### Exploitation
+## Exploitation
 
 Using Metasploit `wp_admin_shell_upload` module.
 ```
@@ -475,7 +473,7 @@ OS          : Linux jax 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:01:15 UT
 Meterpreter : php/linux
 ```
 
-### Flag #3 - User
+## Flag #3 - User
 
 ```
 meterpreter > shell
@@ -494,7 +492,7 @@ www-data@jax:/$ cat /home/web/flag3.txt
 MD5-HASH : 40740735d446c27cd551f890030f7c75
 ```
 
-### Privilege Escalation - web
+## Privilege Escalation - web
 
 We are in **www-data** user role. But we have the **web** user credentials, so it is just to switch it out.
 ```
@@ -511,7 +509,7 @@ web@jax:/$ id
 uid=1001(web) gid=1000(uname-a) groups=1000(uname-a)
 ```
 
-### Privilege Escalation - Root
+## Privilege Escalation - Root
 
 The **web** user has perission to run `/usr/bin/awk` as root without password.
 ```
@@ -533,7 +531,7 @@ root@jax:/# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
 
-### Flag #4 - Root
+## Flag #4 - Root
 
 ```
 root@jax:/root# cat final.txt
