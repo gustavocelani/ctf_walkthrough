@@ -225,7 +225,7 @@ The response of this request contains the result of `id` command:
 }
 ```
 
-## Exploiting RCE
+## Exploitation RCE
 
 To better interact with this RCE I uploaded the `php_web_shell.php` file.\
 It is an PHP WEB Shell based on `https://github.com/andripwn/rce`.\

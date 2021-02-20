@@ -216,7 +216,7 @@ nostromo nhttpd 1.9.3 - Directory Traversal Remote Command Execution   | linux/r
 ----------------------------------------------------------------------- ---------------------------------
 ```
 
-## Exploiting Nostromo Service
+## Exploitation Nostromo Service
 
 Using `msfconsole` module.
 ```
@@ -310,7 +310,7 @@ Credentials:
 * Manager Role: **tomcat**:**@sprot0230sp**
 * Admin Role: **admin**:**as3epr04irto**
 
-## Exploiting Tomcat Manager
+## Exploitation Tomcat Manager
 
 ```
 msf6 > search tomcat_mgr_upload

@@ -209,7 +209,7 @@ DOWNLOADED: 64568 - FOUND: 17
 Default 2015 Theme for BuilderEngine V3.
 ```
 
-## Exploiting
+## Exploitation
 
 BuilderEngine 3.5.0 - Arbitrary File Upload and Execution ( https://www.exploit-db.com/exploits/42025 )
 ```
@@ -299,7 +299,7 @@ www-data@Muts:/etc/chkrootkit$ cat README
            Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>.
 ```
 
-## Exploiting
+## Exploitation
 
 Backgrounding meterpreter session with target.
 ```

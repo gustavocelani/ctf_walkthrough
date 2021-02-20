@@ -384,7 +384,7 @@ Interesting Finding(s):
 Old Plugin Found: **gracemedia-media-player**\
 User found: **user**
 
-## Exploiting
+## Exploitation
 
 The old plugin `gracemedia-media-player` is vulnerable to Local File Inclusion (LFI): https://www.exploit-db.com/exploits/46537 \
 Validation exception with suggested PoC:

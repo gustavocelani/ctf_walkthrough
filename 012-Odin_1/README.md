@@ -419,7 +419,7 @@ Scan Aborted: Canceled by User
 User: **admin**\
 Pass: **qwerty**
 
-## Exploiting
+## Exploitation
 
 ```
 $ msfconsole

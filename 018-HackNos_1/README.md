@@ -241,7 +241,7 @@ Matching Modules
    0  exploit/unix/webapp/drupal_drupalgeddon2  2018-03-28       excellent  Yes    Drupal Drupalgeddon 2 Forms API Property Injection
 ```
 
-## Exploiting
+## Exploitation
 
 ```
 msf6 > use exploit/unix/webapp/drupal_drupalgeddon2
