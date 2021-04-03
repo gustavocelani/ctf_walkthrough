@@ -30,7 +30,7 @@ xxx.xxx.x.xxx   xx:xx:xx:xx:xx:xx      x      xx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ## Port Scanning
 
 ```
-$ nmap -AT4 -p- 192.168.1.183
+$ nmap -AT4 -p- 192.168.1.186
 ```
 
 ```
