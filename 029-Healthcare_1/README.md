@@ -708,5 +708,5 @@ uid=0(root) gid=0(root) groups=0(root),416(apache)
 Thanks for Playing!
 Follow me at: http://v1n1v131r4.com
 
-root hash: eaff25eaa9ffc8b62e3dfebf70e83a7b
+root hash: eaff25eaa**********************
 ```
